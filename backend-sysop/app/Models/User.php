@@ -4,11 +4,10 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use App\Models\Role;
 
 class User extends Authenticatable
 {
@@ -50,12 +49,20 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the role associated with the user
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * Get the role associated with the user.
      */
     public function role(): HasOne
     {
         return $this->hasOne(Role::class, 'id');
+    }
+
+    /**
+     * Get all of the post for the User.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function post(): HasMany
+    {
+        return $this->hasMany(Post::class, 'user_id');
     }
 }
