@@ -1,0 +1,45 @@
+server {
+    listen $NGINX_PORT_HTTP;
+    server_name $NGINX_HOST;
+
+    location /.well-known/acme-challenge {
+        allow all;
+        root $NGINX_ROOT;
+    }
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen $NGINX_PORT_HTTPS ssl;
+    server_name $NGINX_HOST;
+
+    root $NGINX_ROOT;
+    index index.html index.php;
+
+    ssl on;
+    ssl_protocols TLSv1.2 TLSv1.1 TLSv1;
+    ssl_ciphers ECDH+AESGCM:ECDH+AES256:ECDH+AES128:DH+3DES:!ADH:!AECDH:!MD5;
+
+    ssl_dhparam /etc/ssl/certs/dhparam-2048.pem;
+    ssl_certificate /etc/letsencrypt/live/$NGINX_HOST/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/$NGINX_HOST/privkey.pem;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        fastcgi_pass php-upstream;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+
+        include fastcgi_params;
+    }
+}
+
+upstream php-upstream {
+    server $PHP_HOST:$PHP_PORT;
+}

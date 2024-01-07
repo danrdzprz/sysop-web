@@ -1,0 +1,77 @@
+services:
+  app:
+    build:
+      args:
+        - user=devone
+        - uid=1000
+        - PHP_TIME_ZONE=${ENV_TIME_ZONE}
+      context: ./containers/php
+      dockerfile: Dockerfile
+    image: sysop
+    container_name: sysop-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    environment:
+      - HOST_ADDRESS=${HOST_ADDRESS}
+      - HOST_PROTOCOL=${HOST_PROTOCOL}
+      - HOST_HOSTNAME=${HOST_HOSTNAME}
+      - ENV_LANGUAGE=${ENV_LANGUAGE}
+      - ENV_TIME_ZONE=${ENV_TIME_ZONE}
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ../:/var/www
+      - ./containers/php/config/default.ini:/usr/local/etc/php/conf.d/php.ini
+    networks:
+      - sysop
+    ports:
+      - 9000:9000
+
+  db:
+    image: mysql:latest
+    container_name: sysop-db
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    environment:
+      # MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+     - sysop-db-volume:/var/lib/mysql
+     - ./containers/mysql:/docker-entrypoint-initdb.d
+    networks:
+      - sysop
+
+  nginx:
+    image: nginx:alpine
+    container_name: sysop-nginx
+    working_dir: /var/www
+    restart: unless-stopped
+    environment:
+      - NGINX_HOST=${HOST_HOSTNAME}
+      - NGINX_PORT_HTTP=80
+      - NGINX_PORT_HTTPS=433
+      - NGINX_ROOT=/var/www/public
+      - PHP_HOST=app
+      - PHP_PORT=9000
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ../:/var/www
+      - ./containers/nginx/conf:/etc/nginx/conf.d/
+      - ./containers/nginx/log:/var/log/nginx
+    networks:
+      - sysop
+    depends_on:
+      - app
+networks:
+  sysop:
+    driver: bridge
+volumes:
+  sysop-db-volume:

@@ -1,0 +1,17 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name valach.tk test.valach.tk;
+
+    root /usr/share/nginx/html;
+    index index.html;
+
+    location /.well-known/acme-challenge {
+        allow all;
+        root /usr/share/nginx/html;
+    }
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
