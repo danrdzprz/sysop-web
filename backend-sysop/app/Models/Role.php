@@ -28,10 +28,6 @@ class Role extends Model
         $this->attributes['name'] = mb_strtoupper($value);
     }
 
-    // public function setPermissionsAttribute($value){
-    //     $this->attributes['permissions'] = json_encode($value ? $value : []);
-    // }
-
     /**
      * Get all of the users for the Role.
      */
