@@ -8,7 +8,7 @@ use Tests\TestCase;
 class UserModelTest extends TestCase
 {
     /**
-     * Unit test for model.
+     * Unit test for model: cheack if the user created exists on database table.
      */
     public function testCreateUser(): void
     {
