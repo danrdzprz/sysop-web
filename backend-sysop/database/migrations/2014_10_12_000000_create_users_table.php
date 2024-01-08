@@ -16,7 +16,6 @@ return new class() extends Migration {
             $table->date('birthdate');
             $table->bigInteger('phone');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->foreignId('role_id')->constrained('roles')->onUpdate('cascade')->onDelete('cascade');
             $table->rememberToken();
