@@ -28,7 +28,7 @@ class UserCreated extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'User Created',
+            subject: __('mail.welcome.title'),
         );
     }
 
