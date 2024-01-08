@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -66,5 +67,21 @@ class User extends Authenticatable
     public function post(): HasMany
     {
         return $this->hasMany(Post::class, 'user_id');
+    }
+
+    /**
+     * Scope a query to include post related with the user.
+     */
+    public function scopeIndex(Builder $query): Builder
+    {
+        return $query->join('roles', 'users.role_id', '=', 'roles.id')
+        ->select(
+            'users.id',
+            'users.name',
+            'roles.name as role_name',
+            'users.email',
+            'users.birthdate',
+            'users.phone',
+        );
     }
 }

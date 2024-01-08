@@ -43,9 +43,11 @@ return [
         ],
         'update' => [
             'success' => 'Publicación actualizada exitosamente.',
+            'deny' => 'Debes ser el autor para realizar esta acción.',
         ],
         'delete' => [
             'success' => 'Publicación eliminada exitosamente.',
+            'deny' => 'Debes ser el autor para realizar esta acción.',
         ],
     ],
 ];

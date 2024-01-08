@@ -14,4 +14,12 @@ class PostPolicy
     {
         return $user->id === $post->user_id;
     }
+
+    /**
+     * Determine if the given post can be deleted by the user.
+     */
+    public function delete(User $user, Post $post): bool
+    {
+        return $user->id === $post->user_id;
+    }
 }

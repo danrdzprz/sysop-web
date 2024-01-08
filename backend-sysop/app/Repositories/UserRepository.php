@@ -11,12 +11,12 @@ class UserRepository implements UserRepositoryInterface
 {
     public function getAllUsers(int $total = 10): LengthAwarePaginator
     {
-        return User::paginate($total);
+        return User::index()->paginate($total);
     }
 
     public function getUserById(int $UserId): User
     {
-        return User::findOrFail($UserId);
+        return User::with('role')->findOrFail($UserId);
     }
 
     public function getUserByEmal(string $UserEmail): User

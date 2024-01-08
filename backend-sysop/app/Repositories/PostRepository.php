@@ -10,12 +10,12 @@ class PostRepository implements PostRepositoryInterface
 {
     public function getAllPosts(int $total = 10): LengthAwarePaginator
     {
-        return Post::with('user')->paginate($total);
+        return Post::index()->paginate($total);
     }
 
     public function getPostById(int $PostId): Post
     {
-        return Post::findOrFail($PostId);
+        return Post::with('user')->findOrFail($PostId);
     }
 
     public function deletePost(int $PostId): int

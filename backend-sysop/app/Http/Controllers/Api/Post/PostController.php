@@ -69,7 +69,13 @@ class PostController extends Controller
      */
     public function destroy(Post $post): JsonResponse
     {
-        $this->postRepository->deletePost($post->id);
+        if (auth()->user()->cannot('delete', $post)) {
+            return response()->json([
+                'message' => __('api.posts.delete.deny'),
+            ], JsonResponse::HTTP_UNAUTHORIZED);
+        }
+
+        // $this->postRepository->deletePost($post->id);
 
         return response()->json([
             'message' => __('api.posts.delete.success'),

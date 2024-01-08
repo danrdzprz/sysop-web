@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Builder;
 
 class Role extends Model
 {
@@ -49,5 +50,13 @@ class Role extends Model
     public function users(): HasMany
     {
         return $this->hasMany(User::class, 'role_id');
+    }
+
+    /**
+     * Scope a query to list post bye name and id.
+     */
+    public function scopeCatalog(Builder $query): Builder
+    {
+        return $query->select('name as text', 'id as value')->orderBy('name', 'ASC');
     }
 }

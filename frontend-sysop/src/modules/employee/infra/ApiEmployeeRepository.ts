@@ -60,7 +60,7 @@ export function ApiEmployeeRepository(): EmployeeRepository {
 	}
     async function update(id:number, data: EmployeeDomain): Promise<ResponseSuccess | ResponseFailure> {
 		const response = await request(`/api/users/${id}`,{
-			method: 'GET',
+			method: 'PUT',
 			headers: {
 				'Content-type': 'application/json; charset=UTF-8',
 			},
@@ -74,7 +74,7 @@ export function ApiEmployeeRepository(): EmployeeRepository {
 	}
     async function destroy(id: number): Promise<ResponseSuccess | ResponseFailure> {
 		const response = await request(`/api/users/${id}`,{
-			method: 'GET',
+			method: 'DELETE',
 			headers: {
 				'Content-type': 'application/json; charset=UTF-8',
 			},
