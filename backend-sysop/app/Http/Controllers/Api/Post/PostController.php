@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PostCreateRequest;
 use App\Http\Requests\PostUpdateRequest;
 use App\Interfaces\PostRepositoryInterface;
+use App\Models\Post;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Pagination\LengthAwarePaginator;
-use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -23,7 +23,7 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\LengthAwarePaginator
+     * @return \Illuminate\Pagination\LengthAwarePaginator
      */
     public function index(): LengthAwarePaginator
     {
@@ -56,7 +56,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PostUpdateRequest $request, Post $post)
+    public function update(PostUpdateRequest $request, Post $post): JsonResponse
     {
         $data = $request->validated();
         $this->postRepository->updatePost($post->id, $data);
@@ -69,7 +69,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post): JsonResponse
     {
         $this->postRepository->deletePost($post->id);
 

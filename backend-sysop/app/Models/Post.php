@@ -16,22 +16,22 @@ class Post extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'title', 
-        'text', 
-        'user_id'
+        'title',
+        'text',
+        'user_id',
     ];
-    
+
     /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
      */
     protected $hidden = [
-        'updated_at', 
+        'updated_at',
         'created_at',
-        'user_id', 
+        'user_id',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     /**

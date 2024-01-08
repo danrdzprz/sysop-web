@@ -2,10 +2,8 @@
 
 namespace App\Providers;
 
-use App\Interfaces\CommentRepositoryInterface;
 use App\Interfaces\PostRepositoryInterface;
 use App\Interfaces\UserRepositoryInterface;
-use App\Repositories\CommentRepository;
 use App\Repositories\PostRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;

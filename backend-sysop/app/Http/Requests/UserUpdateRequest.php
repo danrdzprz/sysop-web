@@ -24,8 +24,8 @@ class UserUpdateRequest extends FormRequest
         return [
             'name' => 'nullable|string|max:255',
             'email' => 'nullable|string|email|max:255|unique:users',
-            'birthdate'=>'nullable|date_format:Y-m-d',
-            'phone'=>'nullable|numeric|min:10',
+            'birthdate' => 'nullable|date_format:Y-m-d',
+            'phone' => 'nullable|numeric|min:10',
             'password' => 'nullable|string|confirmed|min:8',
         ];
     }

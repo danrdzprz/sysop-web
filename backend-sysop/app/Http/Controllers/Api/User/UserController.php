@@ -31,7 +31,6 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
     }
 
     public function create(SignupFormRequest $request): JsonResponse
@@ -48,7 +47,6 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
     }
 
     /**
@@ -56,6 +54,5 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
     }
 }

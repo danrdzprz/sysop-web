@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Validation Language Lines
@@ -183,5 +182,4 @@ return [
         'title' => 'título',
         'content' => 'contenido',
     ],
-
 ];

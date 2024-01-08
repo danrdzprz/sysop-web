@@ -3,7 +3,6 @@
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Post\PostController;
 use App\Http\Controllers\Api\User\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,4 +49,3 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('{user}', [UserController::class, 'destroy']);
     });
 });
-
