@@ -16,6 +16,6 @@ export const RecordSchema = z.object({
 });
 
 
-export const ResolverPositionSchema = () =>{
+export const ResolverEmployeeSchema = () =>{
     return toTypedSchema(RecordSchema);
 } 

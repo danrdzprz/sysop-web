@@ -35,7 +35,7 @@
               class="mx-auto"
               max-width="344"
               :title="item.title"
-              :subtitle="item.title"
+              :subtitle="`Autor: ${item.user.name}`"
             >
               <v-card-text>
                 <div class="text--primary">

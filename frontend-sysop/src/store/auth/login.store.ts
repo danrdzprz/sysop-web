@@ -40,7 +40,6 @@ export function useAuthStore(repository: AuthRepository) {
                     feedback.openError({message:`${error}`});
                   }
                 }
-                console.log(error);
                 if(message){
                   feedback.openError({message:`${message}`});
                 }

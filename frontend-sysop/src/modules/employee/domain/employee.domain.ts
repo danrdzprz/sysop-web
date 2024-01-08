@@ -1,25 +1,7 @@
 export interface EmployeeDomain{
     id:number;
     name:string;
-    last_name:string;
     birthdate:string;
-    curp:string;
-    rfc:string;
-    imss_number:string;
-    blood_type:string;
-    infonavit_credit_type:string;
-    marital_status:string;
-    country:string;
-    state:string;
-    city:string;
-    street:string;
-    int_number:string;
-    ext_number:string;
-    zip_code:string;
-    neighborhood:string;
     phone:string;
     email:string;
-    internal_phone:string;
-    internal_email:string;
-    extension:string;
 }

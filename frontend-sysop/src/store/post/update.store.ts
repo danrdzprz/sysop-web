@@ -1,39 +1,34 @@
 import { defineStore } from 'pinia';
 import { RequestStatus } from "~/modules/shared/domain/RequestStatus";
-import type { PaginationDomain } from "~/modules/shared/domain/Pagination";
 import { useFeedBackStore } from "~/store/feedback.store";
-import type { PaginationOptionsDomain } from '~/modules/shared/domain/PaginationOptions';
-import type { PostRepositoryDomain } from '~/modules/posts/domain/post.repository.domain';
-import { useCaselistPosts } from '~/modules/posts/application/useCaseListApplication';
-import type { PostDomain } from '~/modules/posts/domain/post.domain';
 import type { ResponseFailure } from '~/modules/shared/domain/ResponseFailure';
+import type { ResponseSuccess } from '~/modules/shared/domain/ResponseSucces';
+import type { PostRepositoryDomain } from '~/modules/posts/domain/post.repository.domain';
+import type { PostDomain } from '~/modules/posts/domain/post.domain';
+import { useCaseUpdatePost } from '~/modules/posts/application/useCaseUpdate';
 
-export function useListPostStore(repository: PostRepositoryDomain) {
-  return defineStore('POST_LIST',{
-    state: ():{status: RequestStatus, pagination: PaginationDomain<PostDomain>}=> {
+export function useUpdatePostStore(repository: PostRepositoryDomain) {
+  return defineStore('POST_UPDATE',{
+    state: ():{status: RequestStatus, message:  ResponseSuccess | ResponseFailure | null}=> {
       return {
         status:RequestStatus.INITIAL,
-        pagination:{
-          data:[],
-        }
+        message: null
       }
     },
     getters: {
       get_status: (state):RequestStatus => state.status,
     },
     actions: {
-      async getPosts(data: PaginationOptionsDomain) {
+      async update(id: number, data: PostDomain) {
         const feedback = useFeedBackStore();
-
-        this.$reset();
         this.status = RequestStatus.LOADING;
-        return await useCaselistPosts(
+        return await useCaseUpdatePost(
             repository,
-          )(data)
+          )(id, data)
           .then(response => {
-            
+            this.message = response as ResponseSuccess;
+            feedback.openSuccess({message:`${this.message}`});
             this.status = RequestStatus.SUCCESS;
-            this.pagination = response as  PaginationDomain<PostDomain>;
             return response;
           })
           .catch(error => {

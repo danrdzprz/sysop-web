@@ -32,12 +32,18 @@ export function useDeletePostStore(repository: PostRepositoryDomain) {
             return response;
           })
           .catch(error => {
-            this.status = RequestStatus.ERROR;
+            this.status = RequestStatus.ERROR ;
             try {
-              const [error_message]= error.errors;
-              feedback.openError({message:`${error_message}`});
-              console.log(error);
-              return error;
+              const {errors, message} = error as ResponseFailure;
+              if(errors){
+                for (const error of errors) {
+                  feedback.openError({message:`${error}`});
+                }
+              }
+              if(message){
+                feedback.openError({message:`${message}`});
+              }
+              return errors;
             } catch (error) {
               feedback.openError({message:'Error en el servidor'});
               return null;

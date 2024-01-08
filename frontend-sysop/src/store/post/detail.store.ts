@@ -1,39 +1,33 @@
 import { defineStore } from 'pinia';
 import { RequestStatus } from "~/modules/shared/domain/RequestStatus";
-import type { PaginationDomain } from "~/modules/shared/domain/Pagination";
 import { useFeedBackStore } from "~/store/feedback.store";
-import type { PaginationOptionsDomain } from '~/modules/shared/domain/PaginationOptions';
-import type { PostRepositoryDomain } from '~/modules/posts/domain/post.repository.domain';
-import { useCaselistPosts } from '~/modules/posts/application/useCaseListApplication';
-import type { PostDomain } from '~/modules/posts/domain/post.domain';
 import type { ResponseFailure } from '~/modules/shared/domain/ResponseFailure';
+import type { PostRepositoryDomain } from '~/modules/posts/domain/post.repository.domain';
+import type { PostDomain } from '~/modules/posts/domain/post.domain';
+import { useCaseDetailPost } from '~/modules/posts/application/usCaseDetail';
 
-export function useListPostStore(repository: PostRepositoryDomain) {
-  return defineStore('POST_LIST',{
-    state: ():{status: RequestStatus, pagination: PaginationDomain<PostDomain>}=> {
+
+export function useDetailPostStore(repository: PostRepositoryDomain) {
+  return defineStore('POST_DETAIL',{
+    state: ():{status: RequestStatus, data:  PostDomain | ResponseFailure | null}=> {
       return {
         status:RequestStatus.INITIAL,
-        pagination:{
-          data:[],
-        }
+        data: null
       }
     },
     getters: {
       get_status: (state):RequestStatus => state.status,
     },
     actions: {
-      async getPosts(data: PaginationOptionsDomain) {
+      async detail(data: number) {
         const feedback = useFeedBackStore();
-
-        this.$reset();
         this.status = RequestStatus.LOADING;
-        return await useCaselistPosts(
+        return await useCaseDetailPost(
             repository,
           )(data)
           .then(response => {
-            
             this.status = RequestStatus.SUCCESS;
-            this.pagination = response as  PaginationDomain<PostDomain>;
+            this.data = response as PostDomain
             return response;
           })
           .catch(error => {

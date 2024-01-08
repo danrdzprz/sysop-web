@@ -7,7 +7,7 @@ import type { EmployeeDomain } from '~/modules/employee/domain/employee.domain';
 import { useCaseDetailEmployee } from '~/modules/employee/application/useCaseDetail';
 
 export function useDetailEmployeeStore(repository: EmployeeRepository) {
-  return defineStore('HR_EMPLOYEES_DETAIL',{
+  return defineStore('EMPLOYEES_DETAIL',{
     state: ():{status: RequestStatus, data:  EmployeeDomain | ResponseFailure | null}=> {
       return {
         status:RequestStatus.INITIAL,

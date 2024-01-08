@@ -8,7 +8,7 @@ import { useCaseDeleteEmployee } from '~/modules/employee/application/useCaseDel
 
 
 export function useDeleteEmployeeStore(repository: EmployeeRepository) {
-  return defineStore('HR_EMPLOYEES_DELETE',{
+  return defineStore('EMPLOYEES_DELETE',{
     state: ():{status: RequestStatus, message:  ResponseSuccess | ResponseFailure | null}=> {
       return {
         status:RequestStatus.INITIAL,

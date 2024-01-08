@@ -8,7 +8,7 @@
           size="32"
         >S</v-avatar>
 
-        <NuxtLink class="list-item" to="/employess">
+        <NuxtLink class="list-item" to="/employees">
           <v-btn
           text="Empleados"
           variant="text"

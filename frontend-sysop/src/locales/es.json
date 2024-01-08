@@ -12,7 +12,11 @@
       },
       "create":{
         "title":"Nuevo post"
+      },
+      "update":{
+        "title":"Actualizar post"
       }
+
     },
     "auth":{
       "signin":{

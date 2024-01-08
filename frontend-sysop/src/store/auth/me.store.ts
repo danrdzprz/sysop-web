@@ -4,6 +4,7 @@ import { RequestStatus } from '~/modules/shared/domain/RequestStatus';
 import { useFeedBackStore } from '../feedback.store';
 import { UseCaseGetMe } from '~/modules/auth/application/me/login';
 import type { Me } from '~/modules/auth/domain/Me';
+import type { ResponseFailure } from '~/modules/shared/domain/ResponseFailure';
 
 
 export function useMeStore(repository: AuthRepository) {
@@ -14,7 +15,6 @@ export function useMeStore(repository: AuthRepository) {
           me_data:{
             name:"",
             email:"",
-            accepted_terms_conditions: false
           }
         }
       },
@@ -40,14 +40,20 @@ export function useMeStore(repository: AuthRepository) {
             .catch(error => {
               token.value = null; // set token to cookie
               this.status = RequestStatus.ERROR;
+              this.me_data.name = "";
+              this.me_data.email = "";
               try {
-                const [error_message]= error.errors;
-                feedback.openError({message:`${error_message}`});
-                return error;
+                const {errors, message} = error as ResponseFailure;
+                if(errors){
+                  for (const error of errors) {
+                    feedback.openError({message:`${error}`});
+                  }
+                }
+                if(message){
+                  feedback.openError({message:`${message}`});
+                }
+                return errors;
               } catch (error) {
-                this.me_data.name = "";
-                this.me_data.email = "";
-                this.me_data.accepted_terms_conditions = false;
                 feedback.openError({message:'Error en el servidor'});
                 return null;
               }
