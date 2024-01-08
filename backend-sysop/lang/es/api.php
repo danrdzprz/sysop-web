@@ -14,21 +14,33 @@
 return [
     'auth' => [
         'login' => [
-            'success' => 'User Logged in successfully.',
-            'failure' => 'Unauthorized',
+            'success' => 'Sesión cerrada correctamente.',
+            'failure' => 'No autorizado',
         ],
         'logout' => [
-            'success' => 'User Logged out successfully.',
+            'success' => 'Inició de sesión correctamente.',
         ],
     ],
-    'authors' => [
+    'users' => [
         'create' => [
-            'success' => 'Author registered successfully.',
+            'success' => 'Empleado registrado con éxito.',
+        ],
+        'update' => [
+            'success' => 'Empleado actualizado con éxito.',
+        ],
+        'delete' => [
+            'success' => 'Empleado eliminado con éxito.',
         ],
     ],
     'posts' => [
         'create' => [
-            'success' => 'Post registered successfully.',
+            'success' => 'Publicación registrada exitosamente.',
+        ],
+        'update' => [
+            'success' => 'Publicación actualizada exitosamente.',
+        ],
+        'delete' => [
+            'success' => 'Publicación eliminada exitosamente.',
         ],
     ],
 ];
