@@ -1,7 +1,7 @@
 server {
     listen 80;
     listen [::]:80;
-    server_name valach.tk test.valach.tk;
+    server_name devone.tk test.devone.tk;
 
     root /usr/share/nginx/html;
     index index.html;

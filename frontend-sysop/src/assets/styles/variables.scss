@@ -1,0 +1,16 @@
+$family: "Inter var", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+  "Noto Color Emoji";
+
+$lineColor-1: rgb(176, 27, 36);
+
+@use "vuetify/settings" with (
+  $body-font-family: $family,
+  $button-border-radius: 8px,
+  $button-font-weight: 600,
+  $tooltip-border-radius: 8px,
+  $tooltip-font-size: 13px,
+  $tooltip-padding: 3px 12px,
+  $field-border-radius: 8px,
+  $dialog-border-radius:20px,
+);

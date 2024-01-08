@@ -45,7 +45,7 @@ class UserController extends Controller
         Mail::to($user)->send(new UserCreated($user));
 
         return response()->json([
-            'messagge' => __('api.users.create.success'),
+            'message' => __('api.users.create.success'),
         ], JsonResponse::HTTP_CREATED);
     }
 
@@ -57,7 +57,7 @@ class UserController extends Controller
         $this->userRepository->updateUser($user->id, $request->validated());
 
         return response()->json([
-            'messagge' => __('api.users.update.success'),
+            'message' => __('api.users.update.success'),
         ], JsonResponse::HTTP_CREATED);
     }
 
@@ -69,7 +69,7 @@ class UserController extends Controller
         $this->userRepository->deleteUser($user->id);
 
         return response()->json([
-            'messagge' => __('api.users.delete.success'),
+            'message' => __('api.users.delete.success'),
         ], JsonResponse::HTTP_CREATED);
     }
 }

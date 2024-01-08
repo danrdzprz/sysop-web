@@ -24,14 +24,14 @@ class AuthController extends Controller
         $payloadData = $request->validated();
         if (!Auth::attempt($payloadData)) {
             return response()->json([
-                'messagge' => __('api.auth.login.failure'),
+                'message' => __('api.auth.login.failure'),
             ], JsonResponse::HTTP_UNAUTHORIZED);
         }
 
         $user = $this->userRepository->getUserByEmal($payloadData['email']);
 
         return response()->json([
-            'messagge' => __('api.auth.login.success'),
+            'message' => __('api.auth.login.success'),
             'token' => $user->createToken('API_TOKEN')->plainTextToken,
         ], JsonResponse::HTTP_OK);
     }
@@ -41,7 +41,7 @@ class AuthController extends Controller
         auth()->user()->tokens()->delete();
 
         return response()->json([
-            'messagge' => __('api.auth.logout.success'),
+            'message' => __('api.auth.logout.success'),
         ], JsonResponse::HTTP_OK);
     }
 

@@ -47,7 +47,7 @@ class PostController extends Controller
         $this->postRepository->createPost($data);
 
         return response()->json([
-            'messagge' => __('api.posts.create.success'),
+            'message' => __('api.posts.create.success'),
         ], JsonResponse::HTTP_CREATED);
     }
 
@@ -60,7 +60,7 @@ class PostController extends Controller
         $this->postRepository->updatePost($post->id, $data);
 
         return response()->json([
-            'messagge' => __('api.posts.update.success'),
+            'message' => __('api.posts.update.success'),
         ], JsonResponse::HTTP_OK);
     }
 
@@ -72,7 +72,7 @@ class PostController extends Controller
         $this->postRepository->deletePost($post->id);
 
         return response()->json([
-            'messagge' => __('api.posts.delete.success'),
+            'message' => __('api.posts.delete.success'),
         ], JsonResponse::HTTP_OK);
     }
 }
