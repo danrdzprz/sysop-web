@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Post\PostController;
+use App\Http\Controllers\Api\Role\RoleController;
 use App\Http\Controllers\Api\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
+    // GET api/catalogs/roles
+    Route::get('/catalogs/roles', [RoleController::class, 'catalog']);
     // POST api/me
     Route::get('me', [AuthController::class, 'me']);
     // POST api/logout
