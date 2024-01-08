@@ -19,6 +19,9 @@ class AuthController extends Controller
     ) {
     }
 
+    /**
+     * function to login and response with a token.
+     */
     public function login(LoginRequest $request): JsonResponse
     {
         $payloadData = $request->validated();
@@ -36,6 +39,9 @@ class AuthController extends Controller
         ], JsonResponse::HTTP_OK);
     }
 
+    /**
+     * function to logout and delete the token.
+     */
     public function logout(): JsonResponse
     {
         auth()->user()->tokens()->delete();
@@ -45,8 +51,11 @@ class AuthController extends Controller
         ], JsonResponse::HTTP_OK);
     }
 
+    /**
+     * Show the current user with role and permissions.
+     */
     public function me(): User
     {
-        return auth()->user();
+        return $this->userRepository->getUserById(auth()->user()->id);
     }
 }
