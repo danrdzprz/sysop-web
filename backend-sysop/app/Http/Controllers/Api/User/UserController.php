@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Interfaces\UserRepositoryInterface;
+use App\Mail\UserCreated;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -38,7 +40,9 @@ class UserController extends Controller
 
     public function store(UserCreateRequest $request): JsonResponse
     {
-        $this->userRepository->createUser($request->validated());
+        $user = $this->userRepository->createUser($request->validated());
+
+        Mail::to($user)->send(new UserCreated($user));
 
         return response()->json([
             'messagge' => __('api.users.create.success'),
