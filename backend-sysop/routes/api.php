@@ -31,9 +31,9 @@ Route::middleware('auth:sanctum')->group(function () {
         // PUT api/posts/:post
         Route::get('{post}', [PostController::class, 'show']);
         // PUT api/posts/:post
-        Route::post('{post}', [PostController::class, 'update']);
+        Route::put('{post}', [PostController::class, 'update']);
         // DELETE api/posts/:post
-        Route::delete('{post}', [PostController::class, 'store']);
+        Route::delete('{post}', [PostController::class, 'destroy']);
     });
 
     // GROUP api/users
@@ -45,9 +45,9 @@ Route::middleware('auth:sanctum')->group(function () {
         // PUT api/users/:user
         Route::get('{user}', [UserController::class, 'show']);
         // PUT api/users/:user
-        Route::post('{user}', [UserController::class, 'update']);
+        Route::put('{user}', [UserController::class, 'update']);
         // DELETE api/users/:user
-        Route::delete('{user}', [UserController::class, 'store']);
+        Route::delete('{user}', [UserController::class, 'destroy']);
     });
 });
 

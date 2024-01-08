@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api\Post;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostCreateRequest;
+use App\Http\Requests\PostUpdateRequest;
 use App\Interfaces\PostRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -31,9 +33,9 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Post $post): Post
     {
-        //
+        return $this->postRepository->getPostById($post->id);
     }
 
     /**
@@ -54,16 +56,25 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PostUpdateRequest $request, Post $post)
     {
-        //
+        $data = $request->validated();
+        $this->postRepository->updatePost($post->id, $data);
+
+        return response()->json([
+            'messagge' => __('api.posts.update.success'),
+        ], JsonResponse::HTTP_OK);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+        $this->postRepository->deletePost($post->id);
+
+        return response()->json([
+            'messagge' => __('api.posts.delete.success'),
+        ], JsonResponse::HTTP_OK);
     }
 }

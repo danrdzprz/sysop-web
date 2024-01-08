@@ -9,10 +9,25 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Role extends Model
 {
     use HasFactory;
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name', 
+        'permissions'
+    ];
 
-    protected $fillable = ['name', 'permissions'];
-
-    protected $hidden = ['id', 'updated_at', 'created_at'];
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'updated_at', 
+        'created_at'
+    ];
 
     /**
      * The attributes that should be cast.
