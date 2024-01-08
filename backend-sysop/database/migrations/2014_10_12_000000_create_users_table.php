@@ -14,7 +14,7 @@ return new class() extends Migration {
             $table->id();
             $table->string('name');
             $table->date('birthdate');
-            $table->integer('phone');
+            $table->bigInteger('phone');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

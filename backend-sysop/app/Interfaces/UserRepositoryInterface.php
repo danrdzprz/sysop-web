@@ -14,4 +14,8 @@ interface UserRepositoryInterface
     public function getUserByEmal(string $UserId): User;
 
     public function createUser(array $UserDetails): User;
+
+    public function updateUser(int $UserId, array $newDetails): int;
+
+    public function deleteUser(int $UserId): int;
 }

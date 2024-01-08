@@ -30,4 +30,14 @@ class UserRepository implements UserRepositoryInterface
 
         return User::create($UserDetails);
     }
+
+    public function updateUser(int $UserId, array $newDetails): int
+    {
+        return User::whereId($UserId)->update($newDetails);
+    }
+
+    public function deleteUser(int $UserId): int
+    {
+        return User::destroy($UserId);
+    }
 }

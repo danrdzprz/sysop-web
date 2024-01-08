@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SignupFormRequest;
+use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Interfaces\UserRepositoryInterface;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -29,11 +31,12 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user): User
     {
+        return $this->userRepository->getUserById($user->id);
     }
 
-    public function create(SignupFormRequest $request): JsonResponse
+    public function store(UserCreateRequest $request): JsonResponse
     {
         $this->userRepository->createUser($request->validated());
 
@@ -45,14 +48,24 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserUpdateRequest $request, User $user): JsonResponse
     {
+        $this->userRepository->updateUser($user->id, $request->validated());
+
+        return response()->json([
+            'messagge' => __('api.users.update.success'),
+        ], JsonResponse::HTTP_CREATED);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user): JsonResponse
     {
+        $this->userRepository->deleteUser($user->id);
+
+        return response()->json([
+            'messagge' => __('api.users.delete.success'),
+        ], JsonResponse::HTTP_CREATED);
     }
 }

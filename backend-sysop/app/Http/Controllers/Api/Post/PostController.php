@@ -22,8 +22,6 @@ class PostController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Pagination\LengthAwarePaginator
      */
     public function index(): LengthAwarePaginator
     {
