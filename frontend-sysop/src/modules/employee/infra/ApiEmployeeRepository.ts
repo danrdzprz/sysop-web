@@ -6,13 +6,12 @@ import type { PaginationDomain } from "@/modules/shared/domain/Pagination";
 import { request } from '~/utils/http-common';
 import type { PaginationOptionsDomain } from "~/modules/shared/domain/PaginationOptions";
 
-const JSONPLACEHOLDER_URL = 'http://localhost';
 
 export function ApiEmployeeRepository(): EmployeeRepository {
 
 	async function list(data: PaginationOptionsDomain): Promise<PaginationDomain<EmployeeDomain> | ResponseFailure> {
 		try {
-			const response = await request(`${JSONPLACEHOLDER_URL}/api/users?page=${data.page}&page_size=${data.itemsPerPage}`,{
+			const response = await request(`/api/users?page=${data.page}&page_size=${data.itemsPerPage}`,{
 				method: 'GET',
 				headers: {
 					'Content-Yype': 'application/json; charset=UTF-8',
@@ -31,7 +30,7 @@ export function ApiEmployeeRepository(): EmployeeRepository {
 		}
 	}
     async function create(data:EmployeeDomain): Promise<ResponseSuccess | ResponseFailure> {
-		const response = await request(`${JSONPLACEHOLDER_URL}/api/users`,{
+		const response = await request(`/api/users`,{
 			method: 'POST',
             body: JSON.stringify(data),
 			headers: {
@@ -46,7 +45,7 @@ export function ApiEmployeeRepository(): EmployeeRepository {
 		}
 	}
     async function detail(id:number): Promise<EmployeeDomain | ResponseFailure> {
-		const response = await request(`${JSONPLACEHOLDER_URL}/api/users/${id}`,{
+		const response = await request(`/api/users/${id}`,{
 			method: 'GET',
 			headers: {
 				'Content-type': 'application/json; charset=UTF-8',
@@ -60,7 +59,7 @@ export function ApiEmployeeRepository(): EmployeeRepository {
 		}
 	}
     async function update(id:number, data: EmployeeDomain): Promise<ResponseSuccess | ResponseFailure> {
-		const response = await request(`${JSONPLACEHOLDER_URL}/api/users/${id}`,{
+		const response = await request(`/api/users/${id}`,{
 			method: 'GET',
 			headers: {
 				'Content-type': 'application/json; charset=UTF-8',
@@ -74,7 +73,7 @@ export function ApiEmployeeRepository(): EmployeeRepository {
 		}
 	}
     async function destroy(id: number): Promise<ResponseSuccess | ResponseFailure> {
-		const response = await request(`${JSONPLACEHOLDER_URL}/api/users/${id}`,{
+		const response = await request(`/api/users/${id}`,{
 			method: 'GET',
 			headers: {
 				'Content-type': 'application/json; charset=UTF-8',

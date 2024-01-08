@@ -1,60 +1,17 @@
 {
-  "hello": "Hola, {name}!",
   "general":{
     "search":"Buscar ...",
     "save":"Guardar",
     "cancel":"Cancelar"
   },
   "pages":{
-    "disclaimer":{
-      "welcome":{
-
-      }
-    },
-    "human-resources":{
-      "employees":{
-        "index":{
-          "create":"Nuevo colaborador"
-        }
+    "posts":{
+      "index":{
+        "title":"Posts",
+        "create":"Crear nuevo post"
       },
-      "surveys":{
-        "index":{
-          "title":"Encuesta",
-          "create":"Nueva encuesta",
-          "update":"Actulizar encuesta"
-        },
-        "create":{
-          "title":"Nuevo encuesta"
-        }
-      },
-      "job-applications":{
-        "index":{
-          "title":"Solicitudes de trabajo",
-          "create":"Nueva solicitud de empleo"
-        },
-        "create":{
-          "title":"Nuevo departamento"
-        }
-      },
-      "flow-chart":{
-        "departments":{
-          "index":{
-            "title":"Organigrama",
-            "create":"Agregar nuevo departamento"
-          },
-          "create":{
-            "title":"Nuevo departamento"
-          }
-        },
-        "positions":{
-          "index":{
-            "title":"Puestos",
-            "create":"Agregar nuevo puesto"
-          },
-          "create":{
-            "title":"Nuevo puesto"
-          }
-        }
+      "create":{
+        "title":"Nuevo post"
       }
     },
     "auth":{
@@ -72,6 +29,7 @@
     },
     "employees":{
       "index":{
+        "title":"Empleados",
         "create":"Nuevo Empleado"
       },
       "create":{
@@ -79,21 +37,6 @@
       },
       "update":{
         "title":"Actualizar empleado"
-      }
-    },
-    "surveys":{
-      "add_question":"Agregar pregunta",
-      "add_option":"Agregar opción",
-      "add_go_to":"Agregar salto",
-      "add_category":"Agregar categoria",
-      "index":{
-        "create":"Nueva Encuesta"
-      },
-      "create":{
-        "title":"Nueva Encuesta"
-      },
-      "update":{
-        "title":"Actualizar Encuesta"
       }
     }
   },

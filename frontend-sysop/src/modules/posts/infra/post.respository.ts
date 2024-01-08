@@ -7,13 +7,11 @@ import type { PostRepositoryDomain } from "../domain/post.repository.domain";
 import type { PostDomain } from "../domain/post.domain";
 
 
-const JSONPLACEHOLDER_URL = 'http://localhost';
-
 export function ApiPostRepository(): PostRepositoryDomain {
 
 	async function list(data: PaginationOptionsDomain): Promise<PaginationDomain<PostDomain> | ResponseFailure> {
 		try {
-			const response = await request(`${JSONPLACEHOLDER_URL}/api/posts?page=${data.page}&page_size=${data.itemsPerPage}`,{
+			const response = await request(`/api/posts?page=${data.page}&page_size=${data.itemsPerPage}`,{
 				method: 'GET',
 				headers: {
 					'Content-Yype': 'application/json; charset=UTF-8',
@@ -33,7 +31,7 @@ export function ApiPostRepository(): PostRepositoryDomain {
 	}
 
     async function create(data:PostDomain): Promise<ResponseSuccess | ResponseFailure> {
-		const response = await request(`${JSONPLACEHOLDER_URL}/api/posts`,{
+		const response = await request(`/api/posts`,{
 			method: 'POST',
             body: JSON.stringify(data),
 			headers: {
@@ -48,7 +46,7 @@ export function ApiPostRepository(): PostRepositoryDomain {
 		}
 	}
     async function detail(id:number): Promise<PostDomain | ResponseFailure> {
-		const response = await request(`${JSONPLACEHOLDER_URL}/api/posts/${id}`,{
+		const response = await request(`/api/posts/${id}`,{
 			method: 'GET',
 			headers: {
 				'Content-type': 'application/json; charset=UTF-8',
@@ -62,7 +60,7 @@ export function ApiPostRepository(): PostRepositoryDomain {
 		}
 	}
     async function update(id:number, data: PostDomain): Promise<ResponseSuccess | ResponseFailure> {
-		const response = await request(`${JSONPLACEHOLDER_URL}/api/posts/${id}`,{
+		const response = await request(`/api/posts/${id}`,{
 			method: 'PATCH',
             body: JSON.stringify(data),
 			headers: {
@@ -77,7 +75,7 @@ export function ApiPostRepository(): PostRepositoryDomain {
 		}
 	}
     async function destroy(id: number): Promise<ResponseSuccess | ResponseFailure> {
-		const response = await request(`${JSONPLACEHOLDER_URL}/api/posts/${id}`,{
+		const response = await request(`/api/posts/${id}`,{
 			method: 'DELETE',
 			headers: {
 				'Content-type': 'application/json; charset=UTF-8',

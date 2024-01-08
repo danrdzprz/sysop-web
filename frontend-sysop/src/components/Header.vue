@@ -30,17 +30,15 @@
     <VBtn @click="toggleTheme" class="mr-2" icon>
       <VIcon icon="mdi-white-balance-sunny" />
     </VBtn>
-    <!-- Notification -->
-    <v-btn
-      :text="me_store.me_data.name"
-      variant="text"
-    ></v-btn>
-    <!-- Contacts -->
     <!-- Profile -->
     <div class="mr-md-10">
       <v-menu >
         <template v-slot:activator="{ props }">
-          <v-btn icon="mdi-account" v-bind="props"></v-btn>
+          <v-btn
+            :text="me_store.me_data.name"
+            variant="text"
+            v-bind="props"
+          ></v-btn>
         </template>
         <VCard rounded="lg" class="shadow">
           <VList nav>
@@ -77,54 +75,24 @@ const toggleTheme = () => {
 
 const _authRepository = authRepository();
 
-const { logoutAction, $subscribe, request_status } = useLogoutStore(_authRepository); // use authenticateUser action from  auth store
-const me_store = useMeStore(_authRepository); // use authenticateUser action from  auth store
-// const { authenticated,logout } = storeToRefs(useAuthStore()); // make authenticated state reactive with storeToRefs
+const logout_store = useLogoutStore(_authRepository);
+const me_store = useMeStore(_authRepository);
 
 const _logout = async() => {
-  const response = await logoutAction();
-  // router.push('/signin');
+  await logout_store.logoutAction();
 };
 
-$subscribe((mutation, state) => {
-      if( state.request_status.status !== RequestStatus.LOADING && state.request_status.status === RequestStatus.SUCCESS ){
-        navigateTo('/signin');
-      }
+logout_store.$subscribe((mutation, state) => {
+  if( state.status !== RequestStatus.LOADING && state.status === RequestStatus.SUCCESS ){
+    navigateTo('/signin');
+  }
 });
 
 </script>
 
 <style lang="scss">
     @use '../assets/styles/variables';
-  //   @import '../../node_modules/vuetify/lib/styles/settings/_variables';
-
-  //   .v-application .caption {
-  //     font-size: .75rem!important;
-  //     letter-spacing: .0333333333em!important;
-  //     line-height: 1.25rem;
-  //   }
-  //   .app-toolbar{
-  //     padding: 0 !important;
-  //   }
-  // //  .parent-class >>> .v-toolbar__content {
-  // //     padding: 0px !important;
-  // //   }
-
-  //   .user-button{
-  //       text-transform: unset !important;
-  //       &-business{
-  //           @media (max-width: #{map-get($grid-breakpoints, 'md')}) {
-  //               width: 100px;
-  //           }
-  //       }
-  //   }
-
-  //   .page-title{
-  //       @media (max-width: #{map-get($grid-breakpoints, 'sm')}) {
-  //          font-size: 0.75rem;
-  //       }
-  //   }
-
+ 
     .line-app-header{
         width: 100%;
         height: 5px;
@@ -153,8 +121,5 @@ $subscribe((mutation, state) => {
     .v-list{
       padding: 0px;
     }
-
-    // .v-toolbar__content{
-    //     margin: 0 7px !important;
-    // }
+   
 </style>
