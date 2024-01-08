@@ -12,10 +12,10 @@
     */
 
 return [
-    'common'=>[
-        'permissions'=> [
-            'denied' => 'Lo sentimos, acceso denegado'
-        ]
+    'common' => [
+        'permissions' => [
+            'denied' => 'Lo sentimos, acceso denegado',
+        ],
     ],
     'auth' => [
         'login' => [
