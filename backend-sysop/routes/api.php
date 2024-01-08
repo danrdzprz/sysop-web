@@ -24,28 +24,28 @@ Route::middleware('auth:sanctum')->group(function () {
     // GROUP api/posts
     Route::group(['prefix' => 'posts'], function () {
         // GET api/posts
-        Route::get('/', [PostController::class, 'index']);
+        Route::get('/', [PostController::class, 'index'])->middleware('permission:posts,read');
         // POST api/posts
-        Route::post('/', [PostController::class, 'store']);
+        Route::post('/', [PostController::class, 'store'])->middleware('permission:posts,create');
         // PUT api/posts/:post
-        Route::get('{post}', [PostController::class, 'show']);
+        Route::get('{post}', [PostController::class, 'show'])->middleware('permission:posts,read');
         // PUT api/posts/:post
-        Route::put('{post}', [PostController::class, 'update']);
+        Route::put('{post}', [PostController::class, 'update'])->middleware('permission:posts,update');
         // DELETE api/posts/:post
-        Route::delete('{post}', [PostController::class, 'destroy']);
+        Route::delete('{post}', [PostController::class, 'destroy'])->middleware('permission:posts,delete');
     });
 
     // GROUP api/users
     Route::group(['prefix' => 'users'], function () {
         // GET api/users
-        Route::get('/', [UserController::class, 'index']);
+        Route::get('/', [UserController::class, 'index'])->middleware('permission:users,read');
         // POST api/users
-        Route::post('/', [UserController::class, 'store']);
+        Route::post('/', [UserController::class, 'store'])->middleware('permission:users,create');
         // PUT api/users/:user
-        Route::get('{user}', [UserController::class, 'show']);
+        Route::get('{user}', [UserController::class, 'show'])->middleware('permission:users,read');
         // PUT api/users/:user
-        Route::put('{user}', [UserController::class, 'update']);
+        Route::put('{user}', [UserController::class, 'update'])->middleware('permission:users,update');
         // DELETE api/users/:user
-        Route::delete('{user}', [UserController::class, 'destroy']);
+        Route::delete('{user}', [UserController::class, 'destroy'])->middleware('permission:users,delete');
     });
 });

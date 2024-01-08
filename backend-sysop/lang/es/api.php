@@ -12,6 +12,11 @@
     */
 
 return [
+    'common'=>[
+        'permissions'=> [
+            'denied' => 'Lo sentimos, acceso denegado'
+        ]
+    ],
     'auth' => [
         'login' => [
             'success' => 'Sesión cerrada correctamente.',

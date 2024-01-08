@@ -35,7 +35,7 @@ class Role extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'permissions' => 'array',
+        'permissions' => 'object',
     ];
 
     public function setNameAttribute(string $value): void
