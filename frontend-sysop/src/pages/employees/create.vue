@@ -68,7 +68,7 @@ import { useCreateEmployeesStore } from '~/store/employees/create.store';
   
     const store_employees = useCreateEmployeesStore(ApiEmployeeRepository());
 
-    const { handleSubmit, handleReset,setErrors, errors } = useForm<EmployeeDomain>({
+    const { handleSubmit, handleReset,setErrors, errors, values } = useForm<EmployeeDomain>({
         validationSchema: ResolverEmployeeSchema(),
         initialValues:{
           name:"",

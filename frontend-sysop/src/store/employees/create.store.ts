@@ -35,6 +35,7 @@ export function useCreateEmployeesStore(repository: EmployeeRepository) {
           .catch(error => {
             this.status = RequestStatus.ERROR ;
               try {
+                this.message = error as ResponseFailure;
                 const {errors, message} = error as ResponseFailure;
                 if(errors){
                   for (const error of errors) {

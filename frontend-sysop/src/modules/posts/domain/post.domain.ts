@@ -6,3 +6,10 @@ export interface PostDomain {
     text: string;
     user: EmployeeDomain;
 }
+
+export interface PostListDomain {
+    id: number;
+    title: string;
+    text: string;
+    user_name: string;
+}

@@ -3,13 +3,11 @@ import { request } from '~/utils/http-common';
 import type { RoleRepository } from "../domain/role.repository.domain";
 import type { CatalogDomain } from "~/modules/shared/domain/catalog";
 
-const JSONPLACEHOLDER_URL = 'http://localhost';
-
 export function ApiRoleRepository(): RoleRepository {
 
 	async function catalog(): Promise<CatalogDomain[] | ResponseFailure> {
 		try {
-			const response = await request(`${JSONPLACEHOLDER_URL}/api/catalogs/role`,{
+			const response = await request(`/api/catalogs/roles`,{
 				method: 'GET',
 				headers: {
 					'Content-Yype': 'application/json; charset=UTF-8',

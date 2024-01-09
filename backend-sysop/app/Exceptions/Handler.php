@@ -56,7 +56,7 @@ class Handler extends ExceptionHandler
         } elseif ($e instanceof ValidationException) {
             $errors = $e->validator->errors()->getMessages();
 
-            return $this->errorResponse($errors, Response::HTTP_UNPROCESSABLE_ENTITY);
+            return $this->errorValidationResponse($errors, Response::HTTP_UNPROCESSABLE_ENTITY);
         } elseif ($e instanceof \Exception) {
             $errors = $e->getMessage();
 
@@ -96,5 +96,15 @@ class Handler extends ExceptionHandler
     public function errorResponse(array|string $message, $code = Response::HTTP_BAD_REQUEST): JsonResponse
     {
         return response()->json(['message' => $message, 'code' => $code], $code);
+    }
+
+    /**
+     * Error Response.
+     *
+     * @param int $code
+     */
+    public function errorValidationResponse(array|string $message, $code = Response::HTTP_BAD_REQUEST): JsonResponse
+    {
+        return response()->json(['errors' => $message, 'code' => $code], $code);
     }
 }

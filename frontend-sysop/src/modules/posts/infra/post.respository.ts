@@ -4,12 +4,12 @@ import type { PaginationDomain } from "@/modules/shared/domain/Pagination";
 import { request } from '~/utils/http-common';
 import type { PaginationOptionsDomain } from "~/modules/shared/domain/PaginationOptions";
 import type { PostRepositoryDomain } from "../domain/post.repository.domain";
-import type { PostDomain } from "../domain/post.domain";
+import type { PostDomain, PostListDomain } from "../domain/post.domain";
 
 
 export function ApiPostRepository(): PostRepositoryDomain {
 
-	async function list(data: PaginationOptionsDomain): Promise<PaginationDomain<PostDomain> | ResponseFailure> {
+	async function list(data: PaginationOptionsDomain): Promise<PaginationDomain<PostListDomain> | ResponseFailure> {
 		try {
 			const response = await request(`/api/posts?page=${data.page}&page_size=${data.itemsPerPage}`,{
 				method: 'GET',
@@ -18,7 +18,7 @@ export function ApiPostRepository(): PostRepositoryDomain {
 				},
 			});
 			if(response.ok){
-				return await response.json() as PaginationDomain<PostDomain>;
+				return await response.json() as PaginationDomain<PostListDomain>;
 			}else{
 				const error = await response.json() as ResponseFailure;
 				throw error;

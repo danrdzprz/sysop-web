@@ -48,6 +48,7 @@
                 label="Fecha de nacimiento"
                 class="shrink"
                 name="birthdate"
+                autocomplete="false"
             >
             </InputsTextField>
         </VCol>
@@ -59,6 +60,7 @@
                 label="Contraseña"
                 name="password"
                 type="password"
+                autocomplete="false"
             >
             </InputsTextField>
         </VCol>

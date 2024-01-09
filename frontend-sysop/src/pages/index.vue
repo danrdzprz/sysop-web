@@ -35,7 +35,7 @@
               class="mx-auto"
               max-width="344"
               :title="item.title"
-              :subtitle="`Autor: ${item.user.name}`"
+              :subtitle="`Autor: ${item.user_name}`"
             >
               <v-card-text>
                 <div class="text--primary">
@@ -98,11 +98,9 @@
 </template>
 
 <script setup lang="ts">
-  import { RequestStatus } from '~/modules/shared/domain/RequestStatus';
   import { useDialogConfig } from '@/store/dialogConfig.store'
   import { onMounted } from 'vue';
-  import type { PaginationOption } from '~/components/shared/SRCustomDataTable.vue';
-  import type { PostDomain } from '~/modules/posts/domain/post.domain';
+  import type { PostListDomain } from '~/modules/posts/domain/post.domain';
   import { useListPostStore } from '~/store/post/list.store';
   import { ApiPostRepository } from '~/modules/posts/infra/post.respository';
   import { useDeletePostStore } from '~/store/post/destroy.store';
@@ -149,7 +147,7 @@
     return listPosts.pagination.meta ? listPosts.pagination.meta.total : totalItems.value;
   })
   
-  const openDialog = (item: PostDomain)=>{
+  const openDialog = (item: PostListDomain)=>{
     selected.value = item.id;
     dialogConfig.openDialog();
     modal_props.visible = true;
