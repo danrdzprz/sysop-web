@@ -10,13 +10,13 @@
         <!-- Table search -->
         <VRow justify="space-between">
           
-          <VCol cols="3" md="3">
+          <VCol cols="12" sm="6"  md="6" lg="3">
             <SharedSearchInput
               v-model="search"
             >
             </SharedSearchInput>
           </VCol>
-          <VCol sm="3" cols="3" class="text-sm-right">
+          <VCol cols="12" sm="6"  md="6" lg="3" class="text-sm-right">
             <VBtn 
               flat
               color="primary"  
@@ -30,7 +30,7 @@
           </VCol>
         </VRow>
         <VRow justify="space-between" >
-          <VCol sm="4" cols="4" v-for="item of listPosts.pagination.data">
+          <VCol cols="12" sm="12"  md="6" lg="4" v-for="item of listPosts.pagination.data">
             <v-card
               class="mx-auto"
               max-width="344"
@@ -52,7 +52,7 @@
           </VCol>
         </VRow>
         <v-row justify="center">
-          <v-col cols="4">
+          <v-col cols="12">
             <v-container class="max-width">
               <v-pagination
                 v-model="page"

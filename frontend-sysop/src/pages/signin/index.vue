@@ -1,7 +1,7 @@
 <template>
   <VContainer fluid class="fill-height">
     <VRow no-gutters align="center" justify="center" class="fill-height">
-      <VCol cols="7" md="6" lg="7" sm="6">
+      <VCol cols="7" md="6" lg="7" sm="6" class="d-none d-md-flex d-lg-flex">
         <VRow no-gutters align="start" justify="center" class="login-text-color">
           <VCol align-self="start">
             <div class="text-center">
@@ -13,9 +13,9 @@
           </VCol>
         </VRow>
       </VCol>
-      <VCol cols="5">
+      <VCol cols="10" sm="10" md="6" lg="5">
         <VRow no-gutters align="center" justify="center">
-          <VCol cols="12" md="6">
+          <VCol cols="12" sm="12" md="6" lg="6" >
             <h1 class="login-text-color">Bienvenido</h1>
             <p class="login-text-color">Inicia Sesión para comenzar</p>
 

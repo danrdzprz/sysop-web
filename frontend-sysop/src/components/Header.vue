@@ -35,7 +35,10 @@
             :text="me_store.me_data.name"
             variant="text"
             v-bind="props"
+            class="d-none d-sm-flex"
           ></v-btn>
+          <v-btn class="d-flex d-sm-none" icon="mdi-account" size="small" v-bind="props"></v-btn>
+
         </template>
         <VCard rounded="lg" class="shadow">
           <VList nav>
