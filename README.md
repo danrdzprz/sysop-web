@@ -1,5 +1,3 @@
-<h1 align="center"> Koltin blog </h1>
-
 ## :hammer: Librerías usadas
 
 - `laravel/pint`: PHP code style fixer
@@ -52,6 +50,7 @@ $ docker exec sysop-app down
 * correr frontend => npm run dev
 
 ## Notas
-En esta prueba me decidí por el patrón repositorio para la reutilización de código.
+En esta prueba me decidí por el patrón repositorio para la reutilización de código en la parte del backend.
+En el frontend he decidido usar algo de arquitectura hexagonal usando typescript y pinia para la gestión del store.
 La documentacion de la api esta hecha en postman
 Por poco tiempo no pude agregar muchas pruebas. Gracias por leerme.
