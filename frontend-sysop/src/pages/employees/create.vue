@@ -43,7 +43,6 @@
                         </VRow>
                 </VCol>
             </VRow>
-            {{ errors }}
             </form>
         </div>
     </VContainer>

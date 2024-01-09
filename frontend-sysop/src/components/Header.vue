@@ -8,7 +8,7 @@
           size="32"
         >S</v-avatar>
 
-        <NuxtLink class="list-item" to="/employees">
+        <NuxtLink class="list-item" to="/employees" v-if="can_show">
           <v-btn
           text="Empleados"
           variant="text"
@@ -87,6 +87,20 @@ logout_store.$subscribe((mutation, state) => {
     navigateTo('/signin');
   }
 });
+
+const can_show = computed({
+  get() {
+    if( me_store.status !== RequestStatus.LOADING && me_store.status === RequestStatus.SUCCESS ){
+      if(me_store.me_data.role.name === 'ADMIN'){
+        return true;
+      }
+    }
+    return false;
+  },
+  set(newValue) {
+    return newValue;
+  },
+})
 
 </script>
 

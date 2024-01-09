@@ -44,13 +44,13 @@
     </VRow>
     <VRow justify="center" align="center">
         <VCol cols="12" sm="12"  md="6" lg="6">
-            <InputsTextField
+            <InputsDatePickerForm
                 label="Fecha de nacimiento"
                 class="shrink"
                 name="birthdate"
                 autocomplete="false"
             >
-            </InputsTextField>
+            </InputsDatePickerForm>
         </VCol>
     </VRow>
 </template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { computed } from 'vue';
-  import { VDataTableServer, VDataTable as table} from 'vuetify/labs/components';
+  import { VDataTableServer, VDataTable as table} from 'vuetify/components';
 
   type UnwrapReadonlyArrayType<A> = A extends Readonly<Array<infer I>> ? UnwrapReadonlyArrayType<I> : A
   type DT = InstanceType<typeof table>;
@@ -23,10 +23,14 @@
       default: false
     },
     headers:{
-      type: Array as PropType<ReadonlyDataTableHeader[]>,
       required: true,
       default: []
     },
+    // headers:{
+    //   type: Array,
+    //   required: true,
+    //   default: []
+    // },
     search: {
       type: String,
       required: false,
@@ -113,7 +117,4 @@
     font-size: 0.75rem !important;
   }
 
-  .box-f {
-    
-  }
 </style>

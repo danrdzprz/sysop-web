@@ -1,7 +1,7 @@
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
-import { VDataTable } from "vuetify/labs/VDataTable";
+import { VDataTable } from "vuetify/components/VDataTable";
 import { MAIN_THEME, mainDarkTheme, mainTheme } from "../utils/vuetify-theme";
 import { defaults } from "../utils/vuetify-defaults";
 

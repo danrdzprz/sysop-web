@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { computed } from 'vue';
-  import { VDataTable as table} from 'vuetify/labs/components';
+  import { VDataTable as table} from 'vuetify/components';
 
   type UnwrapReadonlyArrayType<A> = A extends Readonly<Array<infer I>> ? UnwrapReadonlyArrayType<I> : A
   type DT = InstanceType<typeof table>;
@@ -17,8 +17,12 @@
       required: false,
       default: false
     },
+    // headers:{
+    //   type: Array as PropType<ReadonlyDataTableHeader[]>,
+    //   required: true,
+    //   default: []
+    // },
     headers:{
-      type: Array as PropType<ReadonlyDataTableHeader[]>,
       required: true,
       default: []
     },
