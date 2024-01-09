@@ -26,10 +26,7 @@
         
       </v-container>
     <VSpacer />
-    <!-- Theme switcher -->
-    <VBtn @click="toggleTheme" class="mr-2" icon>
-      <VIcon icon="mdi-white-balance-sunny" />
-    </VBtn>
+    
     <!-- Profile -->
     <div class="mr-md-10">
       <v-menu >
@@ -67,11 +64,6 @@ import { useTheme } from "vuetify";
 import { RequestStatus } from '~/modules/shared/domain/RequestStatus';
 
 const theme = useTheme();
-
-
-const toggleTheme = () => {
-  theme.global.name.value = theme.global.name.value == MAIN_THEME ? MAIN_DARK_THEME : MAIN_THEME;
-};
 
 const _authRepository = authRepository();
 
