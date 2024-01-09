@@ -12,9 +12,7 @@
                 </VCol>
             </VRow>
             <form @submit.prevent="onSubmit">
-            <VRow justify="center" align="center">
-                <FormsEmployee/>
-            </VRow>
+            <FormsEmployeeUpdate/>
             <VRow justify="center" align="end">
                 <VCol cols="6" md="8" xl="5" class="">
                         <VRow justify="end">
@@ -52,7 +50,7 @@
 import type { EmployeeDomain } from '~/modules/employee/domain/employee.domain';
 import { ApiEmployeeRepository } from '~/modules/employee/infra/ApiEmployeeRepository';
 import { RequestStatus } from '~/modules/shared/domain/RequestStatus';
-import { ResolverEmployeeSchema } from '~/schemes/employee.scheme';
+import { ResolverEmployeeUpdateSchema } from '~/schemes/employee.update.scheme';
 import { useDetailEmployeeStore } from '~/store/employees/detail.store';
 import { useUpdateEmployeeStore } from '~/store/employees/update.store';
 
@@ -69,9 +67,10 @@ import { useUpdateEmployeeStore } from '~/store/employees/update.store';
     const record_id = route.params.id as string;
 
     const { handleSubmit, handleReset,setErrors,setValues } = useForm<EmployeeDomain>({
-        validationSchema: ResolverEmployeeSchema(),
+        validationSchema: ResolverEmployeeUpdateSchema(),
         initialValues:{
           name:"",
+          password:"",
         }
     });
     

@@ -64,6 +64,7 @@ export function ApiEmployeeRepository(): EmployeeRepository {
 			headers: {
 				'Content-type': 'application/json; charset=UTF-8',
 			},
+			body: JSON.stringify(data),
 		});
 		if(response.ok){
 			return await response.json() as ResponseSuccess;

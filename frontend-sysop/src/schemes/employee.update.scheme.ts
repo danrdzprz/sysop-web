@@ -7,11 +7,9 @@ export const RecordSchema = z.object({
     email: z.string().email(),
     phone: z.string().min(10).max(10).or(z.number()),
     birthdate: z.string().min(1),
-    password: z.string().min(1),
-    password_confirmation: z.string().min(1),
 });
 
 
-export const ResolverEmployeeSchema = () =>{
+export const ResolverEmployeeUpdateSchema = () =>{
     return toTypedSchema(RecordSchema);
 } 

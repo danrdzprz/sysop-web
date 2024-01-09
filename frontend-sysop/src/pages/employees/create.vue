@@ -43,6 +43,7 @@
                         </VRow>
                 </VCol>
             </VRow>
+            {{ errors }}
             </form>
         </div>
     </VContainer>
@@ -82,7 +83,7 @@ import { useCreateEmployeesStore } from '~/store/employees/create.store';
     store_employees.$subscribe((mutation, state) => {
       if( state.status !== RequestStatus.LOADING && state.status === RequestStatus.SUCCESS ){
         store_employees.$reset();
-        navigateTo('/');
+        navigateTo('/employees');
       }
       if( state.status !== RequestStatus.LOADING && state.status === RequestStatus.ERROR ){
         setErrors(store_employees.message as any);

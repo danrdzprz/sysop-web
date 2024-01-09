@@ -53,30 +53,6 @@
             </InputsTextField>
         </VCol>
     </VRow>
-
-    <VRow justify="center" align="center">
-        <VCol cols="12" sm="12"  md="6" lg="6">
-            <InputsTextField
-                label="Contraseña"
-                name="password"
-                type="password"
-            >
-            </InputsTextField>
-        </VCol>
-    </VRow>
-
-    <VRow justify="center" align="center">
-        <VCol cols="12" sm="12"  md="6" lg="6">
-            <InputsTextField
-                label="Confirmación de contraseña"
-                name="password_confirmation"
-                type="password"
-            >
-            </InputsTextField>
-        </VCol>
-    </VRow>
-    
-    
 </template>
 <script setup lang="ts">
 import { ApiRoleRepository } from '~/modules/roles/infra/ApiRoleRepository';

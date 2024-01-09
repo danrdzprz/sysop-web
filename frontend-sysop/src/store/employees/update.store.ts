@@ -26,9 +26,9 @@ export function useUpdateEmployeeStore(repository: EmployeeRepository) {
             repository,
           )(id, data)
           .then(response => {
-            this.message = response as ResponseSuccess;
-            feedback.openSuccess({message:`${this.message}`});
             this.status = RequestStatus.SUCCESS;
+            const message = (response as  ResponseSuccess).message
+            feedback.openSuccess({message:`${message}`});
             return response;
           })
           .catch(error => {
