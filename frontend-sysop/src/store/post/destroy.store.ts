@@ -9,10 +9,11 @@ import { useCaseDeletePost } from '~/modules/posts/application/useCaseDelete';
 
 export function useDeletePostStore(repository: PostRepositoryDomain) {
   return defineStore('POST_DELETE',{
-    state: ():{status: RequestStatus, message:  ResponseSuccess | ResponseFailure | null}=> {
+    state: ():{status: RequestStatus, message:  ResponseSuccess | ResponseFailure | null, errors: ResponseFailure["errors"]}=> {
       return {
         status:RequestStatus.INITIAL,
-        message: null
+        message: null,
+        errors:[]
       }
     },
     getters: {

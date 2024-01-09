@@ -84,7 +84,7 @@ import { useUpdateEmployeeStore } from '~/store/employees/update.store';
         navigateTo('/employees');
       }
       if( state.status !== RequestStatus.LOADING && state.status === RequestStatus.ERROR ){
-        setErrors(update_employee.message as any);
+        setErrors(update_employee.errors as any);
       }
     });
     

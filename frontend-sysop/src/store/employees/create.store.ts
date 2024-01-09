@@ -9,10 +9,11 @@ import type { EmployeeRepository } from '~/modules/employee/domain/employee.repo
 
 export function useCreateEmployeesStore(repository: EmployeeRepository) {
   return defineStore('EMPLOYEE_CREATE',{
-    state: ():{status: RequestStatus, message:  ResponseSuccess | ResponseFailure | null}=> {
+    state: ():{status: RequestStatus, message:  ResponseSuccess | ResponseFailure | null, errors: ResponseFailure["errors"]}=> {
       return {
         status:RequestStatus.INITIAL,
-        message: null
+        message: null,
+        errors: []
       }
     },
     getters: {
@@ -34,22 +35,28 @@ export function useCreateEmployeesStore(repository: EmployeeRepository) {
           })
           .catch(error => {
             this.status = RequestStatus.ERROR ;
-              try {
-                this.message = error as ResponseFailure;
-                const {errors, message} = error as ResponseFailure;
-                if(errors){
-                  for (const error of errors) {
-                    feedback.openError({message:`${error}`});
+            try {
+              this.message = error as ResponseFailure;
+              const {errors, message} = error as ResponseFailure;
+              if(errors){
+                for (const key in errors) {
+                  if (Object.prototype.hasOwnProperty.call(errors, key)) {
+                    const element = errors[key];
+                    for (const msg of element) {
+                      feedback.openError({message:`${msg}`});
+                    }
                   }
                 }
-                if(message){
-                  feedback.openError({message:`${message}`});
-                }
-                return errors;
-              } catch (error) {
-                feedback.openError({message:'Error en el servidor'});
-                return null;
+                this.errors = errors;
               }
+              if(message){
+                feedback.openError({message:`${message}`});
+              }
+              return errors;
+            } catch (error) {
+              feedback.openError({message:'Error en el servidor'});
+              return null;
+            }
           });
       }
     }

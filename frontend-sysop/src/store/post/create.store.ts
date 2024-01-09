@@ -9,10 +9,11 @@ import type { PostDomain } from '~/modules/posts/domain/post.domain';
 
 export function useCreatePostStore(repository: PostRepositoryDomain) {
   return defineStore('POST_CREATE',{
-    state: ():{status: RequestStatus, message:  ResponseSuccess | ResponseFailure | null}=> {
+    state: ():{status: RequestStatus, message:  ResponseSuccess | ResponseFailure | null, errors: ResponseFailure["errors"]}=> {
       return {
         status:RequestStatus.INITIAL,
-        message: null
+        message: null,
+        errors:[]
       }
     },
     getters: {

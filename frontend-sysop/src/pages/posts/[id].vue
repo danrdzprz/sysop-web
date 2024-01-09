@@ -83,7 +83,7 @@ import { useUpdatePostStore } from '~/store/post/update.store';
         navigateTo('/');
       }
       if( state.status !== RequestStatus.LOADING && state.status === RequestStatus.ERROR ){
-        setErrors(update_post.message as any);
+        setErrors(update_post.errors as any);
       }
     });
     

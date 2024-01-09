@@ -6,12 +6,15 @@ import type { AuthSuccess } from '~/modules/auth/domain/AuthSucces';
 import { RequestStatus } from '~/modules/shared/domain/RequestStatus';
 import { useFeedBackStore } from '../feedback.store';
 import type { ResponseFailure } from '~/modules/shared/domain/ResponseFailure';
+import type { ResponseSuccess } from '~/modules/shared/domain/ResponseSucces';
 // export factory function, factory pattern
 export function useAuthStore(repository: AuthRepository) {
   return defineStore('AUTH_LOGIN',{
-      state: () => {
+      state: ():{status: RequestStatus, message:  ResponseSuccess | ResponseFailure | null, errors: ResponseFailure["errors"]} => {
         return {
           status:RequestStatus.INITIAL,
+          message: null,
+          errors:[]
         }
       },
       getters: {
@@ -34,11 +37,18 @@ export function useAuthStore(repository: AuthRepository) {
             .catch(error => {
               this.status = RequestStatus.ERROR ;
               try {
+                this.message = error as ResponseFailure;
                 const {errors, message} = error as ResponseFailure;
                 if(errors){
-                  for (const error of errors) {
-                    feedback.openError({message:`${error}`});
+                  for (const key in errors) {
+                    if (Object.prototype.hasOwnProperty.call(errors, key)) {
+                      const element = errors[key];
+                      for (const msg of element) {
+                        feedback.openError({message:`${msg}`});
+                      }
+                    }
                   }
+                  this.errors = errors;
                 }
                 if(message){
                   feedback.openError({message:`${message}`});

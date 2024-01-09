@@ -9,10 +9,11 @@ import { useCaseDeleteEmployee } from '~/modules/employee/application/useCaseDel
 
 export function useDeleteEmployeeStore(repository: EmployeeRepository) {
   return defineStore('EMPLOYEES_DELETE',{
-    state: ():{status: RequestStatus, message:  ResponseSuccess | ResponseFailure | null}=> {
+    state: ():{status: RequestStatus, message:  ResponseSuccess | ResponseFailure | null, errors: ResponseFailure["errors"]}=> {
       return {
         status:RequestStatus.INITIAL,
-        message: null
+        message: null,
+        errors:[]
       }
     },
     getters: {
@@ -32,12 +33,25 @@ export function useDeleteEmployeeStore(repository: EmployeeRepository) {
             return response;
           })
           .catch(error => {
-            this.status = RequestStatus.ERROR;
+            this.status = RequestStatus.ERROR ;
             try {
-              const [error_message]= error.errors;
-              feedback.openError({message:`${error_message}`});
-              console.log(error);
-              return error;
+              this.message = error as ResponseFailure;
+              const {errors, message} = error as ResponseFailure;
+              if(errors){
+                for (const key in errors) {
+                  if (Object.prototype.hasOwnProperty.call(errors, key)) {
+                    const element = errors[key];
+                    for (const msg of element) {
+                      feedback.openError({message:`${msg}`});
+                    }
+                  }
+                }
+                this.errors = errors;
+              }
+              if(message){
+                feedback.openError({message:`${message}`});
+              }
+              return errors;
             } catch (error) {
               feedback.openError({message:'Error en el servidor'});
               return null;

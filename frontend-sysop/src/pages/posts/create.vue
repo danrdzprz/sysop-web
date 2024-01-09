@@ -85,7 +85,8 @@
         navigateTo('/');
       }
       if( state.status !== RequestStatus.LOADING && state.status === RequestStatus.ERROR ){
-        setErrors(store_posts.message as any);
+
+        setErrors(store_posts.errors as any);
       }
     });
 

@@ -85,7 +85,7 @@ import { useCreateEmployeesStore } from '~/store/employees/create.store';
         navigateTo('/employees');
       }
       if( state.status !== RequestStatus.LOADING && state.status === RequestStatus.ERROR ){
-        setErrors(store_employees.message as any);
+        setErrors(store_employees.errors as any);
       }
     });
 

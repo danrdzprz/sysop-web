@@ -9,10 +9,11 @@ import { useCaseUpdatePost } from '~/modules/posts/application/useCaseUpdate';
 
 export function useUpdatePostStore(repository: PostRepositoryDomain) {
   return defineStore('POST_UPDATE',{
-    state: ():{status: RequestStatus, message:  ResponseSuccess | ResponseFailure | null}=> {
+    state: ():{status: RequestStatus, message:  ResponseSuccess | ResponseFailure | null, errors: ResponseFailure["errors"]}=> {
       return {
         status:RequestStatus.INITIAL,
-        message: null
+        message: null,
+        errors:[]
       }
     },
     getters: {
