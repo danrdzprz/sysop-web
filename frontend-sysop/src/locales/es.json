@@ -2,7 +2,8 @@
   "general":{
     "search":"Buscar ...",
     "save":"Guardar",
-    "cancel":"Cancelar"
+    "cancel":"Cancelar",
+    "back":"Regresar"
   },
   "pages":{
     "posts":{

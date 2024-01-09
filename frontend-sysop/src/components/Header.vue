@@ -28,32 +28,32 @@
     <VSpacer />
     
     <!-- Profile -->
-    <div class="mr-md-10">
+    <!-- <div class="mr-md-10"> -->
       <v-menu >
         <template v-slot:activator="{ props }">
+          <!-- <v-btn class="d-flex d-sm-none" icon="mdi-account" size="small" v-bind="props"></v-btn> -->
           <v-btn
-            :text="me_store.me_data.name"
             variant="text"
             v-bind="props"
-            class="d-none d-sm-flex"
-          ></v-btn>
-          <v-btn class="d-flex d-sm-none" icon="mdi-account" size="small" v-bind="props"></v-btn>
-
+          >
+          <v-icon class="d-flex d-sm-none" icon="mdi-account" size="large"></v-icon>
+          <span class="d-none d-sm-flex text-button">{{me_store.me_data.name}}</span>
+          </v-btn>
         </template>
         <VCard rounded="lg" class="shadow">
           <VList nav>
-            <v-list-item link>
+            <v-list-item link @click="()=>_logout()" :disabled="logout_store.status === RequestStatus.LOADING">
               <template #prepend>
                 <VIcon class="mr-5" icon="mdi-exit-to-app" />
               </template>
               <template #title>
-                <span class="text-subtitle-2 font-weight-medium" @click="()=>_logout()" :disable="false">Logout</span>
+                <span class="text-subtitle-2 font-weight-medium">Logout</span>
               </template>
             </v-list-item>
           </VList>
         </VCard>
       </v-menu>
-    </div>
+    <!-- </div> -->
 
   </VAppBar>
   

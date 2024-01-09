@@ -32,22 +32,15 @@
         <VRow justify="space-between" >
           <VCol cols="12" sm="12"  md="6" lg="4" v-for="item of listPosts.pagination.data">
             <v-card
-              class="mx-auto"
-              max-width="344"
-              :title="item.title"
-              :subtitle="`Autor: ${item.user_name}`"
+              variant="tonal"
             >
-              <v-card-text>
-                <div class="text--primary">
-                  {{ item.text }}
-                </div>
-              </v-card-text>
-              <v-card-actions>
+            <v-card-actions>
+              <v-card-title>{{ `Post: ${item.title}` }}</v-card-title>
               <v-spacer></v-spacer>
-                <v-btn size="small" color="surface-variant" variant="text" icon="mdi-open-in-new"></v-btn>
-                <v-btn size="small" color="surface-variant" variant="text" icon="mdi-pencil" :to="`/posts/${item.id}`"></v-btn>
-                <v-btn size="small" color="surface-variant" variant="text" icon="mdi mdi-delete" @click="openDialog(item)"></v-btn>
-              </v-card-actions>
+              <v-btn size="small" color="surface-variant" variant="text" icon="mdi-open-in-new" :to="`/posts/${item.id}/detail`"></v-btn>
+              <v-btn size="small" color="surface-variant" variant="text" icon="mdi-pencil" :to="`/posts/${item.id}/edit`"></v-btn>
+              <v-btn size="small" color="surface-variant" variant="text" icon="mdi mdi-delete" @click="openDialog(item)"></v-btn>
+            </v-card-actions>
             </v-card>
           </VCol>
         </VRow>

@@ -9,7 +9,7 @@ import { useCaseDetailPost } from '~/modules/posts/application/usCaseDetail';
 
 export function useDetailPostStore(repository: PostRepositoryDomain) {
   return defineStore('POST_DETAIL',{
-    state: ():{status: RequestStatus, data:  PostDomain | ResponseFailure | null}=> {
+    state: ():{status: RequestStatus, data:  PostDomain | null}=> {
       return {
         status:RequestStatus.INITIAL,
         data: null
