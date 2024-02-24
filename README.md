@@ -29,10 +29,12 @@ $ docker exec sysop-app down
 
 ## Instalación
 
-- `Backen`
+- `Backend`
 
 * Clonar repositorio
 * Copiar .env.example como .env
+* Modificar variables de entorno
+* Entrar al directorio .docker y copiar .env.example como .env
 * Modificar variables de entorno
 * Configurar correo
 * En directorio raiz ejecutar entrar al directorio .docker ejecutar => docker compose up -d
