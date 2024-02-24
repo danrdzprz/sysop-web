@@ -54,5 +54,3 @@ $ docker exec sysop-app down
 ## Notas
 En esta prueba me decidí por el patrón repositorio para la reutilización de código en la parte del backend.
 En el frontend he decidido usar algo de arquitectura hexagonal usando typescript y pinia para la gestión del store.
-La documentacion de la api esta hecha en postman
-Por poco tiempo no pude agregar muchas pruebas. Gracias por leerme.
